@@ -1,0 +1,1597 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ACMEx — Clarity from Complexity</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800&display=swap" rel="stylesheet">
+  <style>
+    /* ════════════════════════════════════════
+       ACME Design System — CSS Tokens v1.0
+    ════════════════════════════════════════ */
+    :root {
+      --color-acme-purple:    #4B1F72;
+      --color-purple-deep:    #2E0F47;
+      --color-purple-mid:     #6A2FA0;
+      --color-purple-light:   #A47BD9;
+      --color-white:          #FFFFFF;
+      --color-charcoal:       #1A1A1A;
+      --color-grey-soft:      #E6E6E6;
+      --color-electric-violet:#9A4DFF;
+      --color-deep-indigo:    #2C1E4A;
+
+      /* Semantic (light mode defaults) */
+      --bg:          var(--color-white);
+      --text:        var(--color-charcoal);
+      --heading:     var(--color-acme-purple);
+      --accent:      var(--color-acme-purple);
+      --divider:     var(--color-grey-soft);
+      --nav-bg:      rgba(255,255,255,0.96);
+      --subtle-bg:   #F4F0F8;
+
+      /* Typography */
+      --font: "Inter", "Helvetica Neue", "SF Pro", Arial, sans-serif;
+      --hero-size: clamp(2.8rem, 7vw, 6.5rem);
+      --h1:    clamp(2rem, 4.5vw, 4rem);
+      --h2:    clamp(1.5rem, 3vw, 2.25rem);
+      --h3:    1.25rem;
+      --base:  1rem;
+      --sm:    0.875rem;
+      --xs:    0.75rem;
+
+      --lh-tight:  1.05;
+      --lh-normal: 1.4;
+      --lh-loose:  1.7;
+
+      --track-tight:   -0.03em;
+      --track-normal:  0em;
+      --track-wide:    0.04em;
+      --track-wider:   0.08em;
+      --track-widest:  0.16em;
+
+      /* Spacing */
+      --sp-4:   4px;
+      --sp-8:   8px;
+      --sp-12:  12px;
+      --sp-16:  16px;
+      --sp-24:  24px;
+      --sp-32:  32px;
+      --sp-48:  48px;
+      --sp-64:  64px;
+      --sp-96:  96px;
+      --sp-128: 128px;
+      --section: clamp(80px, 12vw, 140px);
+
+      --radius-sm:  2px;
+      --radius-md:  4px;
+      --radius-lg:  8px;
+
+      --max-w:  1280px;
+      --pad:    clamp(20px, 5vw, 80px);
+
+      --ease: 0.25s ease;
+    }
+
+    [data-theme="dark"] {
+      --bg:        var(--color-deep-indigo);
+      --text:      var(--color-white);
+      --heading:   var(--color-white);
+      --accent:    var(--color-acme-purple);
+      --divider:   rgba(255,255,255,0.1);
+      --nav-bg:    rgba(44,30,74,0.97);
+      --subtle-bg: #23194A;
+    }
+
+    /* ════════ RESET ════════ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    img, svg { display: block; }
+    a { color: inherit; }
+    button, input, textarea, select { font-family: inherit; }
+
+    body {
+      font-family: var(--font);
+      font-size: var(--base);
+      line-height: var(--lh-loose);
+      color: var(--text);
+      background: var(--bg);
+      -webkit-font-smoothing: antialiased;
+      transition: background var(--ease), color var(--ease);
+    }
+
+    /* ════════ NAV ════════ */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 200;
+      height: 68px;
+      background: var(--nav-bg);
+      border-bottom: 1px solid var(--divider);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      transition: background var(--ease), border-color var(--ease);
+    }
+
+    .nav-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 var(--pad);
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--sp-24);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: var(--sp-12);
+      cursor: pointer;
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+
+    .nav-mark { width: 28px; height: 28px; }
+
+    .nav-wordmark {
+      font-size: 1.05rem;
+      font-weight: 700;
+      letter-spacing: var(--track-wide);
+      color: var(--color-acme-purple);
+      line-height: 1;
+    }
+    [data-theme="dark"] .nav-wordmark { color: var(--color-white); }
+    [data-theme="dark"] .mark-fill { fill: white; }
+    [data-theme="dark"] .mark-fill-group { stroke: white; }
+    [data-theme="dark"] .hero-mark-strokes { stroke: var(--color-purple-light); }
+    [data-theme="dark"] .about-mark-strokes { stroke: var(--color-purple-light); }
+    .about-mark-strokes { stroke: var(--color-acme-purple); }
+    .about-wm-strokes { fill: var(--color-acme-purple); }
+    [data-theme="dark"] .about-wm-strokes { fill: white; }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: var(--sp-32);
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: var(--xs);
+      font-weight: 600;
+      letter-spacing: var(--track-widest);
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--text);
+      opacity: 0.55;
+      cursor: pointer;
+      transition: opacity var(--ease), color var(--ease);
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -3px; left: 0; right: 0;
+      height: 1px;
+      background: var(--color-acme-purple);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.2s ease;
+    }
+
+    .nav-links a:hover { opacity: 1; }
+    .nav-links a:hover::after,
+    .nav-links a.active::after { transform: scaleX(1); }
+    .nav-links a.active { opacity: 1; color: var(--color-acme-purple); }
+    [data-theme="dark"] .nav-links a.active { color: var(--color-purple-light); }
+    [data-theme="dark"] .nav-links a.active::after { background: var(--color-purple-light); }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: var(--sp-12);
+      flex-shrink: 0;
+    }
+
+    .theme-btn {
+      background: none;
+      border: 1px solid var(--divider);
+      border-radius: var(--radius-md);
+      padding: 6px 12px;
+      cursor: pointer;
+      font-size: var(--xs);
+      font-weight: 600;
+      letter-spacing: var(--track-widest);
+      text-transform: uppercase;
+      color: var(--text);
+      opacity: 0.6;
+      transition: all var(--ease);
+    }
+    .theme-btn:hover { opacity: 1; border-color: var(--color-acme-purple); color: var(--color-acme-purple); }
+
+    /* ════════ BUTTONS ════════ */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--sp-8);
+      font-size: var(--xs);
+      font-weight: 700;
+      letter-spacing: var(--track-widest);
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 14px 36px;
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      border: none;
+      transition: background var(--ease), color var(--ease), border-color var(--ease), opacity var(--ease);
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: var(--color-acme-purple);
+      color: var(--color-white);
+    }
+    .btn-primary:hover { background: #5A2A8A; }
+    .btn-primary:active { background: #3E195F; }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--color-acme-purple);
+      border: 1.5px solid currentColor;
+    }
+    [data-theme="dark"] .btn-ghost { color: rgba(255,255,255,0.7); }
+    .btn-ghost:hover {
+      background: var(--color-acme-purple);
+      color: var(--color-white);
+      border-color: var(--color-acme-purple);
+    }
+
+    .btn-sm { padding: 10px 20px; font-size: 0.7rem; }
+
+    /* ════════ LAYOUT ════════ */
+    .container {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 var(--pad);
+    }
+
+    section { padding: var(--section) 0; }
+    .section-sm { padding: var(--sp-64) 0; }
+    hr.div { border: none; border-top: 1px solid var(--divider); }
+
+    /* ════════ PAGES ════════ */
+    .page { display: none; }
+    .page.active { display: block; animation: fadeUp 0.45s ease both; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ════════ LABELS ════════ */
+    .label {
+      font-size: var(--xs);
+      font-weight: 700;
+      letter-spacing: var(--track-widest);
+      text-transform: uppercase;
+      color: var(--color-acme-purple);
+      margin-bottom: var(--sp-24);
+    }
+    [data-theme="dark"] .label { color: var(--color-purple-light); }
+
+    /* ════════════════════════════════════════
+       HOME
+    ════════════════════════════════════════ */
+
+    /* — Hero — */
+    .hero {
+      padding-top: calc(68px + clamp(56px, 10vw, 112px));
+      padding-bottom: var(--sp-96);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      top: 0; right: -10%;
+      width: 55%;
+      height: 100%;
+      background: radial-gradient(ellipse at 80% 30%, rgba(75,31,114,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-tag {
+      font-size: var(--xs);
+      font-weight: 700;
+      letter-spacing: var(--track-widest);
+      text-transform: uppercase;
+      color: var(--color-acme-purple);
+      margin-bottom: var(--sp-24);
+      display: flex;
+      align-items: center;
+      gap: var(--sp-12);
+    }
+
+    [data-theme="dark"] .hero-tag { color: var(--color-purple-light); }
+
+    .hero-tag::before {
+      content: '';
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--color-acme-purple);
+      flex-shrink: 0;
+    }
+
+    [data-theme="dark"] .hero-tag::before { background: var(--color-purple-light); }
+
+    .hero-h1 {
+      font-size: var(--hero-size);
+      font-weight: 800;
+      letter-spacing: var(--track-tight);
+      line-height: var(--lh-tight);
+      color: var(--text);
+      max-width: 860px;
+      margin-bottom: var(--sp-32);
+    }
+
+    .hero-h1 .accent { color: var(--color-acme-purple); }
+    [data-theme="dark"] .hero-h1 .accent { color: var(--color-purple-light); }
+
+    .hero-sub {
+      font-size: var(--h3);
+      color: var(--text);
+      opacity: 0.6;
+      max-width: 540px;
+      line-height: var(--lh-loose);
+      margin-bottom: var(--sp-48);
+      font-weight: 400;
+    }
+
+    .hero-ctas { display: flex; gap: var(--sp-12); flex-wrap: wrap; }
+
+    /* — Grid of 3 — */
+    .pillars {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .pillar {
+      padding: var(--sp-48) var(--sp-32);
+      border-left: 1px solid var(--divider);
+      border-top: 1px solid var(--divider);
+      position: relative;
+      transition: background var(--ease);
+    }
+
+    .pillar:first-child { border-left: none; }
+    .pillars { border-bottom: 1px solid var(--divider); }
+
+    .pillar-num {
+      font-size: var(--xs);
+      font-weight: 700;
+      letter-spacing: var(--track-widest);
+      color: var(--color-acme-purple);
+      opacity: 0.4;
+      margin-bottom: var(--sp-24);
+    }
+
+    [data-theme="dark"] .pillar-num { color: var(--color-purple-light); }
+
+    .pillar-title {
+      font-size: var(--h3);
+      font-weight: 700;
+      letter-spacing: var(--track-wide);
+      color: var(--heading);
+      margin-bottom: var(--sp-16);
+    }
+
+    .pillar-body { font-size: var(--sm); color: var(--text); opacity: 0.65; line-height: var(--lh-loose); }
+
+    /* — Difference Band — */
+    .band-purple {
+      background: var(--color-acme-purple);
+      color: var(--color-white);
+    }
+
+    .band-purple .label { color: rgba(255,255,255,0.45); }
+
+    .band-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--sp-96);
+      align-items: center;
+    }
+
+    .band-h2 {
+      font-size: var(--h2);
+      font-weight: 800;
+      letter-spacing: var(--track-tight);
+      line-height: var(--lh-tight);
+      color: var(--color-white);
+      margin-bottom: var(--sp-24);
+    }
+
+    .band-body { font-size: var(--base); color: rgba(255,255,255,0.75); line-height: var(--lh-loose); margin-bottom: var(--sp-32); }
+
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--sp-8);
+    }
+
+    .tag {
+      font-size: var(--xs);
+      font-weight: 600;
+      letter-spacing: var(--track-wide);
+      padding: 6px 14px;
+      border: 1px solid rgba(255,255,255,0.25);
+      border-radius: var(--radius-sm);
+      color: rgba(255,255,255,0.85);
+    }
+
+    .band-stat {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--sp-32);
+    }
+
+    .stat-block {}
+    .stat-num {
+      font-size: clamp(2.5rem, 5vw, 4.5rem);
+      font-weight: 800;
+      letter-spacing: var(--track-tight);
+      line-height: 1;
+      color: rgba(255,255,255,0.15);
+    }
+
+    .stat-label {
+      font-size: var(--xs);
+      font-weight: 600;
+      letter-spacing: var(--track-widest);
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+    }
+
+    /* — Case Study Teaser — */
+    .cs-teaser {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--sp-64);
+      align-items: center;
+    }
+
+    .cs-label {
+      font-size: var(--xs);
+      font-weight: 700;
+      letter-spacing: var(--track-widest);
+      text-transform: uppercase;
+      color: var(--color-acme-purple);
+      margin-bottom: var(--sp-16);
+    }
+    [data-theme="dark"] .cs-label { color: var(--color-purple-light); }
+
+    .cs-h2 {
+      font-size: var(--h2);
+      font-weight: 800;
+      letter-spacing: var(--track-tight);
+      line-height: var(--lh-tight);
+      color: var(--heading);
+      margin-bottom: var(--sp-16);
+    }
+
+    .cs-body { font-size: var(--sm); color: var(--text); opacity: 0.7; line-height: var(--lh-loose); margin-bottom: var(--sp-32); }
+
+    .cs-visual {
+      background: var(--color-purple-deep);
+      aspect-ratio: 4 / 3;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .cs-visual::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(145deg, rgba(106,47,160,0.3) 0%, rgba(46,15,71,0.85) 100%);
+    }
+
+    .cs-visual-inner {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+    }
+
+    .cs-big-num {
+      font-size: clamp(4rem, 8vw, 7rem);
+      font-weight: 800;
+      letter-spacing: var(--track-tight);
+      line-height: 1;
+      color: rgba(255,255,255,0.12);
+    }
+
+    .cs-sub-tag {
+      font-size: var(--xs);
+      font-weight: 600;
+      letter-spacing: var(--track-widest);
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+    }
+
+    /* — About Teaser — */
+    .about-teaser-band {
+      background: var(--subtle-bg);
+    }
+
+    .teaser-center {
+      text-align: center;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    .teaser-h2 {
+      font-size: var(--h2);
+      font-weight: 800;
+      letter-spacing: var(--track-tight);
+      line-height: var(--lh-normal);
+      color: var(--heading);
+      margin-bottom: var(--sp-24);
+    }
+
+    .teaser-body { font-size: var(--base); color: var(--text); opacity: 0.65; line-height: var(--lh-loose); margin-bottom: var(--sp-32); }
+
+    /* — Final CTA — */
+    .final-cta {
+      background: var(--color-charcoal);
+      text-align: center;
+    }
+    [data-theme="dark"] .final-cta { background: var(--color-purple-deep); }
+
+    .final-h2 {
+      font-size: var(--h2);
+      font-weight: 800;
+      letter-spacing: var(--track-tight);
+      color: var(--color-white);
+      margin-bottom: var(--sp-32);
+    }
+
+    /* ════════════════════════════════════════
+       APPROACH
+    ════════════════════════════════════════ */
+
+    .page-hero {
+      padding-top: calc(68px + clamp(56px, 10vw, 112px));
+      padding-bottom: var(--sp-64);
+    }
+
+    .page-h1 {
+      font-size: var(--h1);
+      font-weight: 800;
+      letter-spacing: var(--track-tight);
+      line-height: var(--lh-tight);
+      color: var(--heading);
+      max-width: 720px;
+      margin-bottom: var(--sp-24);
+    }
+
+    .page-intro { font-size: var(--h3); color: var(--text); opacity: 0.6; max-width: 520px; line-height: var(--lh-loose); }
+
+    .approach-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border-top: 1px solid var(--divider);
+      border-left: 1px solid var(--divider);
+    }
+
+    .approach-item {
+      border-right: 1px solid var(--divider);
+      border-bottom: 1px solid var(--divider);
+      padding: var(--sp-48) var(--sp-32);
+    }
+
+    .approach-num {
+      font-size: var(--xs);
+      font-weight: 700;
+      letter-spacing: var(--track-widest);
+      color: var(--color-acme-purple);
+      opacity: 0.5;
+      margin-bottom: var(--sp-24);
+    }
+    [data-theme="dark"] .approach-num { color: var(--color-purple-light); }
+
+    .approach-title {
+      font-size: var(--h3);
+      font-weight: 700;
+      letter-spacing: var(--track-tight);
+      color: var(--heading);
+      margin-bottom: var(--sp-16);
+    }
+
+    .approach-body { font-size: var(--sm); color: var(--text); opacity: 0.7; line-height: var(--lh-loose); }
+
+    .approach-item.span-full { grid-column: 1 / -1; }
+
+    .mark-band {
+      background: var(--color-acme-purple);
+      text-align: center;
+    }
+
+    .mark-band .label { color: rgba(255,255,255,0.4); display: flex; justify-content: center; }
+
+    .mark-band-h2 {
+      font-size: var(--h2);
+      font-weight: 800;
+      letter-spacing: var(--track-tight);
+      color: var(--color-white);
+      margin-bottom: var(--sp-16);
+    }
+
+    .mark-band-body { font-size: var(--base); color: rgba(255,255,255,0.7); max-width: 480px; margin: 0 auto; line-height: var(--lh-loose); }
+
+    /* ════════════════════════════════════════
+       WORK
+    ════════════════════════════════════════ */
+
+    .cs-full-header {
+      border-top: 4px solid var(--color-acme-purple);
+      padding-top: var(--sp-32);
+      margin-bottom: var(--sp-64);
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: var(--sp-32);
+      align-items: start;
+    }
+
+    .cs-full-title {
+      font-size: var(--h1);
+      font-weight: 800;
+      letter-spacing: var(--track-tight);
+      line-height: var(--lh-tight);
+      color: var(--heading);
+    }
+
+    .cs-meta-block { text-align: right; }
+
+    .cs-meta-row { margin-bottom: var(--sp-12); }
+
+    .cs-meta-key {
+      font-size: var(--xs);
+      font-weight: 600;
+      letter-spacing: var(--track-widest);
+      text-transform: uppercase;
+      color: var(--text);
+      opacity: 0.4;
+    }
+
+    .cs-meta-val {
+      font-size: var(--sm);
+      font-weight: 700;
+      color: var(--color-acme-purple);
+    }
+    [data-theme="dark"] .cs-meta-val { color: var(--color-purple-light); }
+
+    .cs-two-col {
+      display: grid;
+      grid-template-columns: 3fr 1fr;
+      gap: var(--sp-64);
+      align-items: start;
+    }
+
+    .cs-section { margin-bottom: var(--sp-48); }
+
+    .cs-sec-label {
+      font-size: var(--xs);
+      font-weight: 700;
+      letter-spacing: var(--track-widest);
+      text-transform: uppercase;
+      color: var(--color-acme-purple);
+      margin-bottom: var(--sp-12);
+    }
+    [data-theme="dark"] .cs-sec-label { color: var(--color-purple-light); }
+
+    .cs-sec-body { font-size: var(--base); color: var(--text); opacity: 0.75; line-height: var(--lh-loose); }
+
+    .cs-arch-list { list-style: none; margin-top: var(--sp-16); }
+
+    .cs-arch-list li {
+      display: flex;
+      align-items: center;
+      gap: var(--sp-16);
+      padding: var(--sp-12) 0;
+      border-bottom: 1px solid var(--divider);
+      font-size: var(--sm);
+      color: var(--text);
+      opacity: 0.75;
+    }
+
+    .cs-arch-list li::before {
+      content: '';
+      width: 20px;
+      height: 2px;
+      background: var(--color-acme-purple);
+      flex-shrink: 0;
+    }
+
+    .outcome-box {
+      background: var(--color-acme-purple);
+      padding: var(--sp-32);
+      color: white;
+    }
+
+    .outcome-box .cs-sec-label { color: rgba(255,255,255,0.5); }
+
+    .outcome-h3 {
+      font-size: var(--h3);
+      font-weight: 700;
+      line-height: var(--lh-tight);
+      color: white;
+      margin-bottom: var(--sp-12);
+    }
+
+    .outcome-body { font-size: var(--sm); color: rgba(255,255,255,0.75); line-height: var(--lh-loose); }
+
+    .sidebar-stat {
+      border: 1px solid var(--divider);
+      padding: var(--sp-24) var(--sp-24);
+      margin-bottom: var(--sp-12);
+      text-align: center;
+    }
+
+    .sidebar-num {
+      font-size: 2.8rem;
+      font-weight: 800;
+      letter-spacing: var(--track-tight);
+      line-height: 1;
+      color: var(--color-acme-purple);
+      margin-bottom: var(--sp-4);
+    }
+    [data-theme="dark"] .sidebar-num { color: var(--color-purple-light); }
+
+    .sidebar-key {
+      font-size: var(--xs);
+      font-weight: 600;
+      letter-spacing: var(--track-wider);
+      text-transform: uppercase;
+      color: var(--text);
+      opacity: 0.5;
+    }
+
+    /* ════════════════════════════════════════
+       ABOUT
+    ════════════════════════════════════════ */
+
+    .about-split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--sp-64);
+      margin-top: var(--sp-64);
+    }
+
+    .about-block-title {
+      font-size: var(--h3);
+      font-weight: 700;
+      color: var(--heading);
+      margin-bottom: var(--sp-12);
+      letter-spacing: var(--track-tight);
+    }
+
+    .about-block-body { font-size: var(--base); color: var(--text); opacity: 0.75; line-height: var(--lh-loose); }
+
+    .tom-card {
+      margin-top: var(--sp-64);
+      border: 1px solid var(--divider);
+      padding: var(--sp-48);
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: var(--sp-48);
+      align-items: center;
+    }
+
+    .tom-monogram {
+      width: 80px;
+      height: 80px;
+      background: var(--color-acme-purple);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.75rem;
+      font-weight: 800;
+      color: white;
+      letter-spacing: -0.02em;
+      flex-shrink: 0;
+    }
+
+    .tom-name {
+      font-size: var(--h2);
+      font-weight: 800;
+      letter-spacing: var(--track-tight);
+      color: var(--color-acme-purple);
+      margin-bottom: var(--sp-4);
+    }
+    [data-theme="dark"] .tom-name { color: var(--color-purple-light); }
+
+    .tom-title {
+      font-size: var(--xs);
+      font-weight: 600;
+      letter-spacing: var(--track-widest);
+      text-transform: uppercase;
+      color: var(--text);
+      opacity: 0.4;
+      margin-bottom: var(--sp-24);
+    }
+
+    .tom-body { font-size: var(--base); color: var(--text); opacity: 0.75; line-height: var(--lh-loose); max-width: 560px; }
+
+    .philosophy-band {
+      background: var(--color-acme-purple);
+    }
+
+    .philosophy-band .label { color: rgba(255,255,255,0.4); }
+
+    .phil-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.1);
+      margin-top: var(--sp-48);
+    }
+
+    .phil-item {
+      background: var(--color-acme-purple);
+      padding: var(--sp-48) var(--sp-32);
+    }
+
+    .phil-statement {
+      font-size: var(--h3);
+      font-weight: 700;
+      letter-spacing: var(--track-tight);
+      line-height: var(--lh-tight);
+      color: white;
+      margin-bottom: var(--sp-16);
+    }
+
+    .phil-body { font-size: var(--sm); color: rgba(255,255,255,0.6); line-height: var(--lh-loose); }
+
+    .mark-reveal {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--sp-64);
+      align-items: center;
+    }
+
+    /* ════════════════════════════════════════
+       CONTACT
+    ════════════════════════════════════════ */
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--sp-64);
+      margin-top: var(--sp-48);
+      padding-bottom: var(--section);
+    }
+
+    .form-field { margin-bottom: var(--sp-24); }
+
+    .form-label {
+      display: block;
+      font-size: var(--xs);
+      font-weight: 700;
+      letter-spacing: var(--track-widest);
+      text-transform: uppercase;
+      color: var(--text);
+      opacity: 0.5;
+      margin-bottom: var(--sp-8);
+    }
+
+    .form-input, .form-textarea {
+      width: 100%;
+      background: transparent;
+      border: 1px solid var(--divider);
+      border-radius: var(--radius-sm);
+      padding: 12px 16px;
+      font-size: var(--base);
+      color: var(--text);
+      outline: none;
+      transition: border-color var(--ease);
+      line-height: var(--lh-normal);
+    }
+
+    .form-input::placeholder, .form-textarea::placeholder { opacity: 0.35; }
+    .form-input:focus, .form-textarea:focus { border-color: var(--color-acme-purple); }
+
+    .form-textarea { resize: vertical; min-height: 140px; }
+
+    .email-rows { border-top: 1px solid var(--divider); }
+
+    .email-row {
+      padding: var(--sp-20, 20px) 0;
+      border-bottom: 1px solid var(--divider);
+    }
+
+    .email-key {
+      font-size: var(--xs);
+      font-weight: 600;
+      letter-spacing: var(--track-wider);
+      text-transform: uppercase;
+      color: var(--text);
+      opacity: 0.4;
+      margin-bottom: var(--sp-4);
+    }
+
+    .email-val {
+      font-size: var(--base);
+      font-weight: 500;
+      color: var(--color-acme-purple);
+      text-decoration: none;
+      transition: opacity var(--ease);
+    }
+    [data-theme="dark"] .email-val { color: var(--color-purple-light); }
+    .email-val:hover { opacity: 0.65; }
+
+    /* ════════ FOOTER ════════ */
+    footer {
+      border-top: 1px solid var(--divider);
+      padding: var(--sp-32) 0;
+    }
+
+    .foot-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .foot-copy {
+      font-size: var(--xs);
+      color: var(--text);
+      opacity: 0.35;
+      letter-spacing: var(--track-wide);
+    }
+
+    .foot-mark {
+      font-size: var(--sm);
+      font-weight: 700;
+      letter-spacing: var(--track-wide);
+      color: var(--color-acme-purple);
+    }
+    [data-theme="dark"] .foot-mark { color: rgba(255,255,255,0.5); }
+
+    /* ════════ RESPONSIVE ════════ */
+    @media (max-width: 1024px) {
+      .pillars { grid-template-columns: 1fr 1fr; }
+      .pillar:nth-child(2) { border-left: 1px solid var(--divider); }
+      .pillar:nth-child(3) { border-left: none; }
+      .band-inner { grid-template-columns: 1fr; gap: var(--sp-48); }
+      .cs-teaser { grid-template-columns: 1fr; }
+      .mark-reveal { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .pillars { grid-template-columns: 1fr; }
+      .pillar { border-left: none; }
+      .approach-grid { grid-template-columns: 1fr; }
+      .cs-full-header { grid-template-columns: 1fr; }
+      .cs-meta-block { text-align: left; }
+      .cs-two-col { grid-template-columns: 1fr; }
+      .about-split { grid-template-columns: 1fr; gap: var(--sp-32); }
+      .tom-card { grid-template-columns: 1fr; gap: var(--sp-24); }
+      .phil-grid { grid-template-columns: 1fr; }
+      .contact-grid { grid-template-columns: 1fr; }
+    }
+
+    .work-ghost-panel {
+      aspect-ratio: 4/3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background: transparent;
+    }
+
+    .work-ghost-sigil {
+      width: clamp(220px, 70%, 400px);
+      height: auto;
+      display: block;
+      margin: 0 auto;
+    }
+
+    .ghost-strokes { stroke: var(--color-acme-purple); fill: var(--color-acme-purple); }
+    [data-theme="dark"] .ghost-strokes { stroke: #FFFFFF; fill: #FFFFFF; }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════
+     NAVIGATION
+══════════════════════════════════════════ -->
+<nav>
+  <div class="nav-inner">
+
+    <div class="nav-logo" onclick="go('home')">
+      <svg class="nav-mark" viewBox="-6 -6 192 108" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g class="mark-fill-group" stroke="#4B1F72" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" fill="none">
+          <line x1="0"   y1="90" x2="60"  y2="60"/>
+          <line x1="60"  y1="60" x2="90"  y2="90"/>
+          <line x1="60"  y1="90" x2="90"  y2="30"/>
+          <line x1="90"  y1="30" x2="120" y2="90"/>
+          <line x1="90"  y1="90" x2="120" y2="60"/>
+          <line x1="120" y1="60" x2="180" y2="90"/>
+          <line x1="0"   y1="90" x2="60"  y2="90"/>
+          <line x1="120" y1="90" x2="180" y2="90"/>
+        </g>
+      </svg>
+      <span class="nav-wordmark">ACME<span style="font-weight:300;letter-spacing:0">x</span></span>
+    </div>
+
+    <ul class="nav-links">
+      <li><a id="nl-home"     class="active" onclick="go('home')">Home</a></li>
+      <li><a id="nl-approach"             onclick="go('approach')">Our Approach</a></li>
+      <li><a id="nl-work"                 onclick="go('work')">Work</a></li>
+      <li><a id="nl-about"                onclick="go('about')">About</a></li>
+      <li><a id="nl-contact"              onclick="go('contact')">Contact</a></li>
+    </ul>
+
+    <div class="nav-right">
+      <button class="theme-btn" id="themeBtn" onclick="toggleTheme()">Light</button>
+      <button class="btn btn-primary btn-sm" onclick="go('contact')">Work With ACME</button>
+    </div>
+
+  </div>
+</nav>
+
+
+<!-- ══════════════════════════════════════════
+     PAGE: HOME
+══════════════════════════════════════════ -->
+<div class="page active" id="page-home">
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="container">
+      <svg viewBox="-4 -4 188 116" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:clamp(120px,18vw,220px);height:auto;margin-bottom:var(--sp-32)">
+        <g stroke="#4B1F72" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none" class="hero-mark-strokes">
+          <line x1="0"   y1="90" x2="60"  y2="60"/>
+          <line x1="60"  y1="60" x2="90"  y2="90"/>
+          <line x1="60"  y1="90" x2="90"  y2="30"/>
+          <line x1="90"  y1="30" x2="120" y2="90"/>
+          <line x1="90"  y1="90" x2="120" y2="60"/>
+          <line x1="120" y1="60" x2="180" y2="90"/>
+          <line x1="0"   y1="90" x2="60"  y2="90"/>
+          <line x1="120" y1="90" x2="180" y2="90"/>
+        </g>
+      </svg>
+      <div class="hero-tag">Strategic Operations · Systems Architecture · Creative Direction</div>
+      <h1 class="hero-h1">ACME builds <span class="accent">clarity</span><br>from complexity.</h1>
+      <p class="hero-sub">For organizations that need more than execution — they need transformation.</p>
+      <div class="hero-ctas">
+        <button class="btn btn-primary" onclick="go('contact')">Work With ACME</button>
+        <button class="btn btn-ghost"   onclick="go('approach')">See Our Approach</button>
+      </div>
+    </div>
+  </div>
+
+  <hr class="div">
+
+  <!-- Three Pillars -->
+  <section class="section-sm" style="padding-top:0">
+    <div class="container">
+      <div class="label" style="padding-top:var(--sp-48)">What We Do</div>
+      <div class="pillars">
+        <div class="pillar">
+          <div class="pillar-num">01</div>
+          <div class="pillar-title">Strategic Operations</div>
+          <p class="pillar-body">We design and optimize the systems that make organizations scalable — from revenue models to staffing frameworks to multi-week event architectures.</p>
+        </div>
+        <div class="pillar">
+          <div class="pillar-num">02</div>
+          <div class="pillar-title">Creative Direction</div>
+          <p class="pillar-body">Identity, symbolism, and narrative that give your brand emotional gravity and competitive distinction.</p>
+        </div>
+        <div class="pillar">
+          <div class="pillar-num">03</div>
+          <div class="pillar-title">Consulting &amp; Value Engineering</div>
+          <p class="pillar-body">Outcome-based advisory that quantifies impact, eliminates waste, and turns your goals into executable, measurable systems.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Difference Band -->
+  <section class="band-purple">
+    <div class="container">
+      <div class="band-inner">
+        <div>
+          <div class="label">The ACME Difference</div>
+          <h2 class="band-h2">A force multiplier,<br>not a vendor.</h2>
+          <p class="band-body">ACME integrates strategy, operations, and creative direction into a single discipline. We don't sell hours. We deliver outcomes.</p>
+          <div class="tag-list">
+            <span class="tag">Systems Thinking</span>
+            <span class="tag">Operational Clarity</span>
+            <span class="tag">Mythic Storytelling</span>
+            <span class="tag">Negotiation Leverage</span>
+            <span class="tag">Architectural Precision</span>
+            <span class="tag">Outcome-Based Delivery</span>
+          </div>
+        </div>
+        <div class="band-stat">
+          <div class="stat-block">
+            <div class="stat-num">01</div>
+            <div class="stat-label">Discipline. Unified.</div>
+          </div>
+          <div class="stat-block">
+            <div class="stat-num">∞</div>
+            <div class="stat-label">Outcomes. Not hours.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Work Teaser -->
+  <section>
+    <div class="container">
+      <div class="label">Work</div>
+      <div class="cs-teaser">
+
+        <!-- Left: text -->
+        <div>
+          <h2 class="cs-h2">The first chapter<br>is being written.</h2>
+          <p class="cs-body">ACME is currently in engagement. Case studies are built from completed work — not promises. When the structures hold and the outcomes land, they will be documented here with full precision.</p>
+          <button class="btn btn-ghost" onclick="go('work')">See What&#39;s Coming</button>
+        </div>
+
+        <!-- Right: ghost sigil + wordmark — single SVG, wordmark inside coordinate space -->
+        <div class="work-ghost-panel">
+          <svg viewBox="-12 -8 204 172" fill="none" xmlns="http://www.w3.org/2000/svg"
+               class="work-ghost-sigil">
+            <!-- Mark -->
+            <g stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none" class="ghost-strokes">
+              <line x1="0"   y1="90" x2="60"  y2="60"/>
+              <line x1="60"  y1="60" x2="90"  y2="90"/>
+              <line x1="60"  y1="90" x2="90"  y2="30"/>
+              <line x1="90"  y1="30" x2="120" y2="90"/>
+              <line x1="90"  y1="90" x2="120" y2="60"/>
+              <line x1="120" y1="60" x2="180" y2="90"/>
+              <line x1="0"   y1="90" x2="60"  y2="90"/>
+              <line x1="120" y1="90" x2="180" y2="90"/>
+            </g>
+            <!-- Wordmark: each letter independently positioned
+                 A start@0=left tip · M middle@90=axis · x end@180=right tip
+                 C=midpoint(~10,90)=50 · E=midpoint(90,~170)=130 -->
+            <text x="0"   y="130" text-anchor="start"  font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="32" font-weight="600" dominant-baseline="auto" class="ghost-strokes">A</text>
+            <text x="50"  y="130" text-anchor="middle" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="32" font-weight="600" dominant-baseline="auto" class="ghost-strokes">C</text>
+            <text x="90"  y="130" text-anchor="middle" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="32" font-weight="600" dominant-baseline="auto" class="ghost-strokes">M</text>
+            <text x="130" y="130" text-anchor="middle" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="32" font-weight="600" dominant-baseline="auto" class="ghost-strokes">E</text>
+            <text x="180" y="130" text-anchor="end"    font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="32" font-weight="300" dominant-baseline="auto" class="ghost-strokes">x</text>
+          </svg>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- About Teaser -->
+  <section class="about-teaser-band">
+    <div class="container">
+      <div class="teaser-center">
+        <div class="label" style="display:flex;justify-content:center">About ACME</div>
+        <h2 class="teaser-h2">Organizations don't fail from lack of effort — they fail from lack of structure.</h2>
+        <p class="teaser-body">ACME brings operational discipline, creative intelligence, and systems architecture together under one roof.</p>
+        <button class="btn btn-primary" onclick="go('about')">Learn More</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="final-cta">
+    <div class="container">
+      <h2 class="final-h2">Ready to build something that lasts?</h2>
+      <button class="btn btn-primary" onclick="go('contact')">Work With ACME</button>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container foot-inner">
+      <span class="foot-copy">© 2026 ACME. All rights reserved. · ACMEx.ca</span>
+      <span class="foot-mark">ACME<span style="font-weight:300">x</span></span>
+    </div>
+  </footer>
+</div>
+
+
+<!-- ══════════════════════════════════════════
+     PAGE: OUR APPROACH
+══════════════════════════════════════════ -->
+<div class="page" id="page-approach">
+
+  <div class="page-hero">
+    <div class="container">
+      <div class="label">Our Approach</div>
+      <h1 class="page-h1">Architecture,<br>not improvisation.</h1>
+      <p class="page-intro">We design systems that scale, narratives that resonate, and operations that hold under pressure.</p>
+    </div>
+  </div>
+
+  <div class="container" style="padding-bottom: var(--section)">
+    <div class="approach-grid">
+      <div class="approach-item">
+        <div class="approach-num">01</div>
+        <h2 class="approach-title">Systems Thinking</h2>
+        <p class="approach-body">Every project begins with structure. We map the forces, constraints, and opportunities that define your environment — then build a system that turns complexity into clarity.</p>
+      </div>
+      <div class="approach-item">
+        <div class="approach-num">02</div>
+        <h2 class="approach-title">Operational Architecture</h2>
+        <p class="approach-body">From staffing frameworks to multi-week event builds, we design operations that are predictable, efficient, and resilient. Our work eliminates chaos before it begins.</p>
+      </div>
+      <div class="approach-item">
+        <div class="approach-num">03</div>
+        <h2 class="approach-title">Creative Intelligence</h2>
+        <p class="approach-body">Identity is more than aesthetics — it's meaning, symbolism, and emotional gravity. We build brands that feel inevitable.</p>
+      </div>
+      <div class="approach-item">
+        <div class="approach-num">04</div>
+        <h2 class="approach-title">Value Engineering</h2>
+        <p class="approach-body">We quantify impact, eliminate waste, and design systems that maximize return on every dollar, hour, and decision.</p>
+      </div>
+      <div class="approach-item span-full">
+        <div class="approach-num">05</div>
+        <h2 class="approach-title">Outcome-Based Delivery</h2>
+        <p class="approach-body" style="max-width:540px">We don't sell time. We deliver outcomes — measurable, defensible, and aligned with your goals. Every engagement ends with something that can be pointed to, reported on, and built upon.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mark Band -->
+  <section class="mark-band">
+    <div class="container" style="text-align:center">
+      <div class="label" style="justify-content:center;display:flex">The ACME Mark</div>
+      <h2 class="mark-band-h2">Built from pure geometry.</h2>
+      <p class="mark-band-body">The ACME mark represents ascent, stability, and expansion. It reflects our philosophy: clarity, intention, and engineered transformation.</p>
+    </div>
+  </section>
+
+  <section class="section-sm" style="text-align:center">
+    <div class="container">
+      <button class="btn btn-primary" onclick="go('contact')">Work With ACME</button>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container foot-inner">
+      <span class="foot-copy">© 2026 ACME. All rights reserved. · ACMEx.ca</span>
+      <span class="foot-mark">ACME<span style="font-weight:300">x</span></span>
+    </div>
+  </footer>
+</div>
+
+
+<!-- ══════════════════════════════════════════
+     PAGE: WORK
+══════════════════════════════════════════ -->
+<div class="page" id="page-work">
+
+  <div class="page-hero">
+    <div class="container">
+      <div class="label">Work</div>
+      <h1 class="page-h1">Built in the field.<br>Documented in full.</h1>
+      <p class="page-intro">ACME is currently in engagement. Case studies are earned — not invented. They will appear here when the work is done and the outcomes are real.</p>
+    </div>
+  </div>
+
+  <!-- Anticipation section -->
+  <section style="padding-top:0">
+    <div class="container" style="padding-bottom:var(--section)">
+
+      <!-- Placeholder cards — what's coming -->
+      <div class="label" style="margin-bottom:var(--sp-32)">What gets documented</div>
+      <div class="approach-grid">
+        <div class="approach-item">
+          <div class="approach-num" style="opacity:0.25">—</div>
+          <h2 class="approach-title">The Challenge</h2>
+          <p class="approach-body">Every case study begins with a problem that had no obvious solution — the kind that required architecture, not improvisation.</p>
+        </div>
+        <div class="approach-item">
+          <div class="approach-num" style="opacity:0.25">—</div>
+          <h2 class="approach-title">The Architecture</h2>
+          <p class="approach-body">How ACME mapped the environment, designed the system, and built the structure from the ground up — decisions, tradeoffs, and logic included.</p>
+        </div>
+        <div class="approach-item">
+          <div class="approach-num" style="opacity:0.25">—</div>
+          <h2 class="approach-title">The Execution</h2>
+          <p class="approach-body">What it took to move from blueprint to reality — the operational detail that separates strategy from delivery.</p>
+        </div>
+        <div class="approach-item">
+          <div class="approach-num" style="opacity:0.25">—</div>
+          <h2 class="approach-title">The Outcome</h2>
+          <p class="approach-body">Measurable results, defensible numbers, and honest assessment of what was built and what it produced.</p>
+        </div>
+      </div>
+
+      <!-- Statement band — elegant full-bleed -->
+      <div style="margin-top:var(--sp-64);background:var(--color-acme-purple);padding:clamp(48px,8vw,96px) clamp(32px,6vw,72px);position:relative;overflow:hidden">
+
+        <!-- Large watermark mark — decorative background -->
+        <svg viewBox="-4 -4 188 116" fill="none" xmlns="http://www.w3.org/2000/svg"
+             style="position:absolute;right:-2%;bottom:-30%;width:clamp(280px,42vw,520px);height:auto;opacity:0.06;pointer-events:none">
+          <g stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none">
+            <line x1="0"   y1="90" x2="60"  y2="60"/>
+            <line x1="60"  y1="60" x2="90"  y2="90"/>
+            <line x1="60"  y1="90" x2="90"  y2="30"/>
+            <line x1="90"  y1="30" x2="120" y2="90"/>
+            <line x1="90"  y1="90" x2="120" y2="60"/>
+            <line x1="120" y1="60" x2="180" y2="90"/>
+            <line x1="0"   y1="90" x2="60"  y2="90"/>
+            <line x1="120" y1="90" x2="180" y2="90"/>
+          </g>
+        </svg>
+
+        <!-- Content -->
+        <div style="position:relative;z-index:1;max-width:680px">
+          <div style="font-size:var(--xs);font-weight:700;letter-spacing:var(--track-widest);text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:var(--sp-24)">Currently</div>
+
+          <p style="font-size:clamp(1.75rem,3.5vw,3rem);font-weight:800;letter-spacing:var(--track-tight);line-height:1.05;color:white;margin-bottom:var(--sp-32)">
+            ACME is in the room.<br>The work is happening now.
+          </p>
+
+          <div style="width:40px;height:1px;background:rgba(255,255,255,0.25);margin-bottom:var(--sp-32)"></div>
+
+          <p style="font-size:var(--base);color:rgba(255,255,255,0.6);max-width:440px;line-height:var(--lh-loose);margin-bottom:var(--sp-48)">
+            If you want to be part of the first chapter — or simply want to understand the kind of engagements ACME takes on — the right move is a conversation.
+          </p>
+
+          <button class="btn" onclick="go('contact')"
+            style="background:white;color:var(--color-acme-purple);font-size:var(--xs);font-weight:700;letter-spacing:var(--track-widest)">
+            Start a Conversation
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <footer>
+    <div class="container foot-inner">
+      <span class="foot-copy">© 2026 ACME. All rights reserved. · ACMEx.ca</span>
+      <span class="foot-mark">ACME<span style="font-weight:300">x</span></span>
+    </div>
+  </footer>
+</div>
+
+
+<!-- ══════════════════════════════════════════
+     PAGE: ABOUT
+══════════════════════════════════════════ -->
+<div class="page" id="page-about">
+
+  <div class="page-hero">
+    <div class="container">
+      <div class="label">About ACME</div>
+      <h1 class="page-h1">Clarity is engineered,<br>not discovered.</h1>
+      <p class="page-intro">ACME was founded to solve a simple problem: organizations don't fail from lack of effort — they fail from lack of structure.</p>
+
+      <div class="about-split">
+        <div>
+          <h2 class="about-block-title">Who We Are</h2>
+          <p class="about-block-body">ACME is a strategic operations and creative architecture studio. We design the frameworks, narratives, and systems that allow organizations to scale with clarity and confidence.</p>
+        </div>
+        <div>
+          <h2 class="about-block-title">Why ACME Exists</h2>
+          <p class="about-block-body">We build the systems that make success inevitable. Every engagement is structured, intentional, and measurable — because ambiguity is expensive and clarity compounds.</p>
+        </div>
+      </div>
+
+      <div class="tom-card">
+        <div class="tom-monogram">TW</div>
+        <div>
+          <div class="tom-name">Tom Weihmayr, CD</div>
+          <div class="tom-title">Founder · Strategic Operator · Systems Architect</div>
+          <p class="tom-body">Tom brings a rare combination of operational discipline, creative intelligence, and high-stakes execution. He builds structures that hold under pressure — and narratives that move people.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Philosophy -->
+  <section class="philosophy-band">
+    <div class="container">
+      <div class="label">Philosophy</div>
+      <div class="phil-grid">
+        <div class="phil-item">
+          <p class="phil-statement">Everything is intentional.</p>
+          <p class="phil-body">Nothing at ACME happens by accident. Every decision is made with purpose, precision, and a clear understanding of its downstream effect.</p>
+        </div>
+        <div class="phil-item">
+          <p class="phil-statement">Everything has structure.</p>
+          <p class="phil-body">We don't improvise. We architect. Every project is built on a foundation of systems thinking — from the first conversation to final delivery.</p>
+        </div>
+        <div class="phil-item">
+          <p class="phil-statement">Everything has meaning.</p>
+          <p class="phil-body">From the mark to the methodology, every element of ACME is designed to communicate something true about what we believe and how we work.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- The Mark -->
+  <section>
+    <div class="container">
+      <div class="mark-reveal">
+        <div>
+          <div class="label">The ACME Mark</div>
+          <h2 class="about-block-title" style="font-size:var(--h2);margin-bottom:var(--sp-16)">A geometric sigil representing ascent, stability, and expansion.</h2>
+          <p class="about-block-body" style="margin-bottom:var(--sp-32)">The mark reflects our belief that clarity is engineered — not discovered. Built from pure geometry, it carries the full structural weight of the brand's intent.</p>
+          <div class="label" style="margin-top:var(--sp-32)">The ACMEx Name</div>
+          <p class="about-block-body">ACME (uppercase) is the structural core. x (lowercase) is the extension, the multiplier, the applied force. Together, they name a brand that operates at scale — and means it.</p>
+        </div>
+        <div style="display:flex;align-items:center;justify-content:center;padding:var(--sp-48)">
+          <!-- Stacked lockup: mark + ACMEx wordmark
+               Each letter is an independent text element — truly centred on its slot
+               A left edge = x=0 (mark left tip)
+               M centre    = x=90 (y-axis)
+               x right edge = x=180 (mark right tip)
+               C = midpoint(A_centre~10, 90) = 50
+               E = midpoint(90, x_centre~170) = 130
+               viewBox wider (0 0 180 156) so letters at edges don't clip -->
+          <svg viewBox="-12 -8 204 172" fill="none" xmlns="http://www.w3.org/2000/svg"
+               style="width:clamp(200px,28vw,320px);height:auto">
+            <!-- Mark -->
+            <g stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none" class="about-mark-strokes">
+              <line x1="0"   y1="90" x2="60"  y2="60"/>
+              <line x1="60"  y1="60" x2="90"  y2="90"/>
+              <line x1="60"  y1="90" x2="90"  y2="30"/>
+              <line x1="90"  y1="30" x2="120" y2="90"/>
+              <line x1="90"  y1="90" x2="120" y2="60"/>
+              <line x1="120" y1="60" x2="180" y2="90"/>
+              <line x1="0"   y1="90" x2="60"  y2="90"/>
+              <line x1="120" y1="90" x2="180" y2="90"/>
+            </g>
+            <!-- Wordmark: each letter independently positioned
+                 A start@0=left tip · M middle@90=axis · x end@180=right tip -->
+            <text x="0"   y="130" text-anchor="start"  font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="32" font-weight="600" dominant-baseline="auto" class="about-wm-strokes">A</text>
+            <text x="50"  y="130" text-anchor="middle" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="32" font-weight="600" dominant-baseline="auto" class="about-wm-strokes">C</text>
+            <text x="90"  y="130" text-anchor="middle" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="32" font-weight="600" dominant-baseline="auto" class="about-wm-strokes">M</text>
+            <text x="130" y="130" text-anchor="middle" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="32" font-weight="600" dominant-baseline="auto" class="about-wm-strokes">E</text>
+            <text x="180" y="130" text-anchor="end"    font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="32" font-weight="300" dominant-baseline="auto" class="about-wm-strokes">x</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0;padding-bottom:var(--section);text-align:center">
+    <div class="container">
+      <button class="btn btn-primary" onclick="go('contact')">Work With ACME</button>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container foot-inner">
+      <span class="foot-copy">© 2026 ACME. All rights reserved. · ACMEx.ca</span>
+      <span class="foot-mark">ACME<span style="font-weight:300">x</span></span>
+    </div>
+  </footer>
+</div>
+
+
+<!-- ══════════════════════════════════════════
+     PAGE: CONTACT
+══════════════════════════════════════════ -->
+<div class="page" id="page-contact">
+
+  <div class="page-hero" style="padding-bottom:0">
+    <div class="container">
+      <div class="label">Contact</div>
+      <h1 class="page-h1">Let's build something<br>that lasts.</h1>
+      <p class="page-intro">If you're ready for clarity, structure, and transformation, ACME is ready to architect it.</p>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="contact-grid">
+
+      <!-- Form -->
+      <div>
+        <div class="form-field">
+          <label class="form-label">Name</label>
+          <input type="text" class="form-input" placeholder="Your full name">
+        </div>
+        <div class="form-field">
+          <label class="form-label">Email</label>
+          <input type="email" class="form-input" placeholder="your@email.com">
+        </div>
+        <div class="form-field">
+          <label class="form-label">Organization</label>
+          <input type="text" class="form-input" placeholder="Your organization">
+        </div>
+        <div class="form-field">
+          <label class="form-label">Message</label>
+          <textarea class="form-textarea" placeholder="Tell us about your project…"></textarea>
+        </div>
+        <button class="btn btn-primary" style="width:100%">Send Message</button>
+      </div>
+
+      <!-- Contact Info -->
+      <div>
+        <div class="form-label" style="margin-bottom:var(--sp-24)">Direct Contact</div>
+                <div class="email-rows">
+          <div class="email-row">
+            <div class="email-key">General Inquiries</div>
+            <a class="email-val" href="/cdn-cgi/l/email-protection#422b2c242d0203010f073a6c2123"><span class="__cf_email__" data-cfemail="b6dfd8d0d9f6f7f5fbf3ce98d5d7">[email&#160;protected]</span></a>
+          </div>
+          <div class="email-row">
+            <div class="email-key">Operations</div>
+            <a class="email-val" href="/cdn-cgi/l/email-protection#98f7e8fdeaf9ecf1f7f6ebd8d9dbd5dde0b6fbf9"><span class="__cf_email__" data-cfemail="90ffe0f5e2f1e4f9fffee3d0d1d3ddd5e8bef3f1">[email&#160;protected]</span></a>
+          </div>
+          <div class="email-row">
+            <div class="email-key">Strategy</div>
+            <a class="email-val" href="/cdn-cgi/l/email-protection#53202721322736342a1312101e162b7d3032"><span class="__cf_email__" data-cfemail="a1d2d5d3c0d5c4c6d8e1e0e2ece4d98fc2c0">[email&#160;protected]</span></a>
+          </div>
+          <div class="email-row">
+            <div class="email-key">Billing</div>
+            <a class="email-val" href="/cdn-cgi/l/email-protection#ed8f84818184838aadacaea0a895c38e8c"><span class="__cf_email__" data-cfemail="6a0803060603040d2a2b29272f1244090b">[email&#160;protected]</span></a>
+          </div>
+          <div class="email-row">
+            <div class="email-key" style="text-transform:none">RFPs</div>
+            <a class="email-val" href="/cdn-cgi/l/email-protection#b3e1f5e3f3f2f0fef6cb9dd0d2"><span class="__cf_email__" data-cfemail="bae8fceafafbf9f7ffc294d9db">[email&#160;protected]</span></a>
+          </div>
+        </div>
+
+        <div style="margin-top:var(--sp-48);padding:var(--sp-32);border:1px solid var(--divider)">
+          <p style="font-size:var(--sm);color:var(--color-acme-purple);font-weight:600;font-style:italic;line-height:var(--lh-loose);letter-spacing:var(--track-wide)">"ACME builds clarity from complexity.<br>Let's begin."</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <footer>
+    <div class="container foot-inner">
+      <span class="foot-copy">© 2026 ACME. All rights reserved. · ACMEx.ca</span>
+      <span class="foot-mark">ACME<span style="font-weight:300">x</span></span>
+    </div>
+  </footer>
+</div>
+
+
+<!-- ══════════════════════════════════════════
+     JS
+══════════════════════════════════════════ -->
+<script>
+  const pages  = ['home','approach','work','about','contact'];
+  const navIds = { home:'nl-home', approach:'nl-approach', work:'nl-work', about:'nl-about', contact:'nl-contact' };
+
+  function go(id) {
+    pages.forEach(p => {
+      document.getElementById('page-' + p).classList.remove('active');
+      const el = document.getElementById(navIds[p]);
+      if (el) el.classList.remove('active');
+    });
+    document.getElementById('page-' + id).classList.add('active');
+    const navEl = document.getElementById(navIds[id]);
+    if (navEl) navEl.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  }
+
+  function toggleTheme() {
+    const html = document.documentElement;
+    const dark = html.getAttribute('data-theme') === 'dark';
+    html.setAttribute('data-theme', dark ? 'light' : 'dark');
+    document.getElementById('themeBtn').textContent = dark ? 'Dark' : 'Light';
+  }
+</script>
+
+</body>
+</html>
