@@ -870,10 +870,10 @@
       align-items: center;
     }
 
-    /* ════════════════════════════════════════
+  /* ════════════════════════════════════════
        CONTACT
     ════════════════════════════════════════ */
-
+ 
     .contact-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -881,9 +881,9 @@
       margin-top: var(--sp-48);
       padding-bottom: var(--section);
     }
-
+ 
     .form-field { margin-bottom: var(--sp-24); }
-
+ 
     .form-label {
       display: block;
       font-size: var(--xs);
@@ -894,7 +894,7 @@
       opacity: 0.5;
       margin-bottom: var(--sp-8);
     }
-
+ 
     .form-input, .form-textarea {
       width: 100%;
       background: transparent;
@@ -907,19 +907,19 @@
       transition: border-color var(--ease);
       line-height: var(--lh-normal);
     }
-
+ 
     .form-input::placeholder, .form-textarea::placeholder { opacity: 0.35; }
     .form-input:focus, .form-textarea:focus { border-color: var(--color-acme-purple); }
-
+ 
     .form-textarea { resize: vertical; min-height: 140px; }
-
+ 
     .email-rows { border-top: 1px solid var(--divider); }
-
+ 
     .email-row {
       padding: var(--sp-20, 20px) 0;
       border-bottom: 1px solid var(--divider);
     }
-
+ 
     .email-key {
       font-size: var(--xs);
       font-weight: 600;
@@ -929,7 +929,7 @@
       opacity: 0.4;
       margin-bottom: var(--sp-4);
     }
-
+ 
     .email-val {
       font-size: var(--base);
       font-weight: 500;
@@ -939,26 +939,26 @@
     }
     [data-theme="dark"] .email-val { color: var(--color-purple-light); }
     .email-val:hover { opacity: 0.65; }
-
+ 
     /* ════════ FOOTER ════════ */
     footer {
       border-top: 1px solid var(--divider);
       padding: var(--sp-32) 0;
     }
-
+ 
     .foot-inner {
       display: flex;
       align-items: center;
       justify-content: space-between;
     }
-
+ 
     .foot-copy {
       font-size: var(--xs);
       color: var(--text);
       opacity: 0.35;
       letter-spacing: var(--track-wide);
     }
-
+ 
     .foot-mark {
       font-size: var(--sm);
       font-weight: 700;
@@ -966,7 +966,7 @@
       color: var(--color-acme-purple);
     }
     [data-theme="dark"] .foot-mark { color: rgba(255,255,255,0.5); }
-
+ 
     /* ════════ RESPONSIVE ════════ */
     @media (max-width: 1024px) {
       .pillars { grid-template-columns: 1fr 1fr; }
@@ -976,7 +976,7 @@
       .cs-teaser { grid-template-columns: 1fr; }
       .mark-reveal { grid-template-columns: 1fr; }
     }
-
+ 
     @media (max-width: 768px) {
       .nav-links { display: none; }
       .pillars { grid-template-columns: 1fr; }
@@ -990,7 +990,7 @@
       .phil-grid { grid-template-columns: 1fr; }
       .contact-grid { grid-template-columns: 1fr; }
     }
-
+ 
     .work-ghost-panel {
       aspect-ratio: 4/3;
       display: flex;
@@ -999,26 +999,26 @@
       overflow: hidden;
       background: transparent;
     }
-
+ 
     .work-ghost-sigil {
       width: clamp(220px, 70%, 400px);
       height: auto;
       display: block;
       margin: 0 auto;
     }
-
+ 
     .ghost-strokes { stroke: var(--color-acme-purple); fill: var(--color-acme-purple); }
     [data-theme="dark"] .ghost-strokes { stroke: #FFFFFF; fill: #FFFFFF; }
   </style>
 </head>
 <body>
-
+ 
 <!-- ══════════════════════════════════════════
      NAVIGATION
 ══════════════════════════════════════════ -->
 <nav>
   <div class="nav-inner">
-
+ 
     <div class="nav-logo" onclick="go('home')">
       <svg class="nav-mark" viewBox="-6 -6 192 108" fill="none" xmlns="http://www.w3.org/2000/svg">
         <g class="mark-fill-group" stroke="#4B1F72" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" fill="none">
@@ -1034,7 +1034,7 @@
       </svg>
       <span class="nav-wordmark">ACME<span style="font-weight:300;letter-spacing:0">x</span></span>
     </div>
-
+ 
     <ul class="nav-links">
       <li><a id="nl-home"     class="active" onclick="go('home')">Home</a></li>
       <li><a id="nl-approach"             onclick="go('approach')">Our Approach</a></li>
@@ -1042,21 +1042,21 @@
       <li><a id="nl-about"                onclick="go('about')">About</a></li>
       <li><a id="nl-contact"              onclick="go('contact')">Contact</a></li>
     </ul>
-
+ 
     <div class="nav-right">
       <button class="theme-btn" id="themeBtn" onclick="toggleTheme()">Light</button>
       <button class="btn btn-primary btn-sm" onclick="go('contact')">Work With ACME</button>
     </div>
-
+ 
   </div>
 </nav>
-
-
+ 
+ 
 <!-- ══════════════════════════════════════════
      PAGE: HOME
 ══════════════════════════════════════════ -->
 <div class="page active" id="page-home">
-
+ 
   <!-- Hero -->
   <div class="hero">
     <div class="container">
@@ -1081,9 +1081,9 @@
       </div>
     </div>
   </div>
-
+ 
   <hr class="div">
-
+ 
   <!-- Three Pillars -->
   <section class="section-sm" style="padding-top:0">
     <div class="container">
@@ -1107,7 +1107,7 @@
       </div>
     </div>
   </section>
-
+ 
   <!-- Difference Band -->
   <section class="band-purple">
     <div class="container">
@@ -1138,20 +1138,20 @@
       </div>
     </div>
   </section>
-
+ 
   <!-- Work Teaser -->
   <section>
     <div class="container">
       <div class="label">Work</div>
       <div class="cs-teaser">
-
+ 
         <!-- Left: text -->
         <div>
           <h2 class="cs-h2">The first chapter<br>is being written.</h2>
           <p class="cs-body">ACME is currently in engagement. Case studies are built from completed work — not promises. When the structures hold and the outcomes land, they will be documented here with full precision.</p>
           <button class="btn btn-ghost" onclick="go('work')">See What&#39;s Coming</button>
         </div>
-
+ 
         <!-- Right: ghost sigil + wordmark — single SVG, wordmark inside coordinate space -->
         <div class="work-ghost-panel">
           <svg viewBox="-12 -8 204 172" fill="none" xmlns="http://www.w3.org/2000/svg"
@@ -1177,11 +1177,11 @@
             <text x="180" y="130" text-anchor="end"    font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="32" font-weight="300" dominant-baseline="auto" class="ghost-strokes">x</text>
           </svg>
         </div>
-
+ 
       </div>
     </div>
   </section>
-
+ 
   <!-- About Teaser -->
   <section class="about-teaser-band">
     <div class="container">
@@ -1193,7 +1193,7 @@
       </div>
     </div>
   </section>
-
+ 
   <!-- Final CTA -->
   <section class="final-cta">
     <div class="container">
@@ -1201,7 +1201,7 @@
       <button class="btn btn-primary" onclick="go('contact')">Work With ACME</button>
     </div>
   </section>
-
+ 
   <footer>
     <div class="container foot-inner">
       <span class="foot-copy">© 2026 ACME. All rights reserved. · ACMEx.ca</span>
@@ -1209,13 +1209,13 @@
     </div>
   </footer>
 </div>
-
-
+ 
+ 
 <!-- ══════════════════════════════════════════
      PAGE: OUR APPROACH
 ══════════════════════════════════════════ -->
 <div class="page" id="page-approach">
-
+ 
   <div class="page-hero">
     <div class="container">
       <div class="label">Our Approach</div>
@@ -1223,7 +1223,7 @@
       <p class="page-intro">We design systems that scale, narratives that resonate, and operations that hold under pressure.</p>
     </div>
   </div>
-
+ 
   <div class="container" style="padding-bottom: var(--section)">
     <div class="approach-grid">
       <div class="approach-item">
@@ -1253,7 +1253,7 @@
       </div>
     </div>
   </div>
-
+ 
   <!-- Mark Band -->
   <section class="mark-band">
     <div class="container" style="text-align:center">
@@ -1262,13 +1262,13 @@
       <p class="mark-band-body">The ACME mark represents ascent, stability, and expansion. It reflects our philosophy: clarity, intention, and engineered transformation.</p>
     </div>
   </section>
-
+ 
   <section class="section-sm" style="text-align:center">
     <div class="container">
       <button class="btn btn-primary" onclick="go('contact')">Work With ACME</button>
     </div>
   </section>
-
+ 
   <footer>
     <div class="container foot-inner">
       <span class="foot-copy">© 2026 ACME. All rights reserved. · ACMEx.ca</span>
@@ -1276,13 +1276,13 @@
     </div>
   </footer>
 </div>
-
-
+ 
+ 
 <!-- ══════════════════════════════════════════
      PAGE: WORK
 ══════════════════════════════════════════ -->
 <div class="page" id="page-work">
-
+ 
   <div class="page-hero">
     <div class="container">
       <div class="label">Work</div>
@@ -1290,11 +1290,11 @@
       <p class="page-intro">ACME is currently in engagement. Case studies are earned — not invented. They will appear here when the work is done and the outcomes are real.</p>
     </div>
   </div>
-
+ 
   <!-- Anticipation section -->
   <section style="padding-top:0">
     <div class="container" style="padding-bottom:var(--section)">
-
+ 
       <!-- Placeholder cards — what's coming -->
       <div class="label" style="margin-bottom:var(--sp-32)">What gets documented</div>
       <div class="approach-grid">
@@ -1319,10 +1319,10 @@
           <p class="approach-body">Measurable results, defensible numbers, and honest assessment of what was built and what it produced.</p>
         </div>
       </div>
-
+ 
       <!-- Statement band — elegant full-bleed -->
       <div style="margin-top:var(--sp-64);background:var(--color-acme-purple);padding:clamp(48px,8vw,96px) clamp(32px,6vw,72px);position:relative;overflow:hidden">
-
+ 
         <!-- Large watermark mark — decorative background -->
         <svg viewBox="-4 -4 188 116" fill="none" xmlns="http://www.w3.org/2000/svg"
              style="position:absolute;right:-2%;bottom:-30%;width:clamp(280px,42vw,520px);height:auto;opacity:0.06;pointer-events:none">
@@ -1337,31 +1337,31 @@
             <line x1="120" y1="90" x2="180" y2="90"/>
           </g>
         </svg>
-
+ 
         <!-- Content -->
         <div style="position:relative;z-index:1;max-width:680px">
           <div style="font-size:var(--xs);font-weight:700;letter-spacing:var(--track-widest);text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:var(--sp-24)">Currently</div>
-
+ 
           <p style="font-size:clamp(1.75rem,3.5vw,3rem);font-weight:800;letter-spacing:var(--track-tight);line-height:1.05;color:white;margin-bottom:var(--sp-32)">
             ACME is in the room.<br>The work is happening now.
           </p>
-
+ 
           <div style="width:40px;height:1px;background:rgba(255,255,255,0.25);margin-bottom:var(--sp-32)"></div>
-
+ 
           <p style="font-size:var(--base);color:rgba(255,255,255,0.6);max-width:440px;line-height:var(--lh-loose);margin-bottom:var(--sp-48)">
             If you want to be part of the first chapter — or simply want to understand the kind of engagements ACME takes on — the right move is a conversation.
           </p>
-
+ 
           <button class="btn" onclick="go('contact')"
             style="background:white;color:var(--color-acme-purple);font-size:var(--xs);font-weight:700;letter-spacing:var(--track-widest)">
             Start a Conversation
           </button>
         </div>
       </div>
-
+ 
     </div>
   </section>
-
+ 
   <footer>
     <div class="container foot-inner">
       <span class="foot-copy">© 2026 ACME. All rights reserved. · ACMEx.ca</span>
@@ -1369,19 +1369,19 @@
     </div>
   </footer>
 </div>
-
-
+ 
+ 
 <!-- ══════════════════════════════════════════
      PAGE: ABOUT
 ══════════════════════════════════════════ -->
 <div class="page" id="page-about">
-
+ 
   <div class="page-hero">
     <div class="container">
       <div class="label">About ACME</div>
       <h1 class="page-h1">Clarity is engineered,<br>not discovered.</h1>
       <p class="page-intro">ACME was founded to solve a simple problem: organizations don't fail from lack of effort — they fail from lack of structure.</p>
-
+ 
       <div class="about-split">
         <div>
           <h2 class="about-block-title">Who We Are</h2>
@@ -1392,7 +1392,7 @@
           <p class="about-block-body">We build the systems that make success inevitable. Every engagement is structured, intentional, and measurable — because ambiguity is expensive and clarity compounds.</p>
         </div>
       </div>
-
+ 
       <div class="tom-card">
         <div class="tom-monogram">TW</div>
         <div>
@@ -1403,7 +1403,7 @@
       </div>
     </div>
   </div>
-
+ 
   <!-- Philosophy -->
   <section class="philosophy-band">
     <div class="container">
@@ -1424,7 +1424,7 @@
       </div>
     </div>
   </section>
-
+ 
   <!-- The Mark -->
   <section>
     <div class="container">
@@ -1470,13 +1470,13 @@
       </div>
     </div>
   </section>
-
+ 
   <section style="padding-top:0;padding-bottom:var(--section);text-align:center">
     <div class="container">
       <button class="btn btn-primary" onclick="go('contact')">Work With ACME</button>
     </div>
   </section>
-
+ 
   <footer>
     <div class="container foot-inner">
       <span class="foot-copy">© 2026 ACME. All rights reserved. · ACMEx.ca</span>
@@ -1484,13 +1484,13 @@
     </div>
   </footer>
 </div>
-
-
+ 
+ 
 <!-- ══════════════════════════════════════════
      PAGE: CONTACT
 ══════════════════════════════════════════ -->
 <div class="page" id="page-contact">
-
+ 
   <div class="page-hero" style="padding-bottom:0">
     <div class="container">
       <div class="label">Contact</div>
@@ -1498,31 +1498,10 @@
       <p class="page-intro">If you're ready for clarity, structure, and transformation, ACME is ready to architect it.</p>
     </div>
   </div>
-
+ 
   <div class="container">
-    <div class="contact-grid">
-
-      <!-- Form -->
-      <div>
-        <div class="form-field">
-          <label class="form-label">Name</label>
-          <input type="text" class="form-input" placeholder="Your full name">
-        </div>
-        <div class="form-field">
-          <label class="form-label">Email</label>
-          <input type="email" class="form-input" placeholder="your@email.com">
-        </div>
-        <div class="form-field">
-          <label class="form-label">Organization</label>
-          <input type="text" class="form-input" placeholder="Your organization">
-        </div>
-        <div class="form-field">
-          <label class="form-label">Message</label>
-          <textarea class="form-textarea" placeholder="Tell us about your project…"></textarea>
-        </div>
-        <button class="btn btn-primary" style="width:100%">Send Message</button>
-      </div>
-
+    <div class="contact-grid" style="grid-template-columns:1fr;max-width:560px">
+ 
       <!-- Contact Info -->
       <div>
         <div class="form-label" style="margin-bottom:var(--sp-24)">Direct Contact</div>
@@ -1548,15 +1527,15 @@
             <a class="email-val" href="/cdn-cgi/l/email-protection#b3e1f5e3f3f2f0fef6cb9dd0d2"><span class="__cf_email__" data-cfemail="bae8fceafafbf9f7ffc294d9db">[email&#160;protected]</span></a>
           </div>
         </div>
-
+ 
         <div style="margin-top:var(--sp-48);padding:var(--sp-32);border:1px solid var(--divider)">
           <p style="font-size:var(--sm);color:var(--color-acme-purple);font-weight:600;font-style:italic;line-height:var(--lh-loose);letter-spacing:var(--track-wide)">"ACME builds clarity from complexity.<br>Let's begin."</p>
         </div>
       </div>
-
+ 
     </div>
   </div>
-
+ 
   <footer>
     <div class="container foot-inner">
       <span class="foot-copy">© 2026 ACME. All rights reserved. · ACMEx.ca</span>
@@ -1564,15 +1543,15 @@
     </div>
   </footer>
 </div>
-
-
+ 
+ 
 <!-- ══════════════════════════════════════════
      JS
 ══════════════════════════════════════════ -->
 <script>
   const pages  = ['home','approach','work','about','contact'];
   const navIds = { home:'nl-home', approach:'nl-approach', work:'nl-work', about:'nl-about', contact:'nl-contact' };
-
+ 
   function go(id) {
     pages.forEach(p => {
       document.getElementById('page-' + p).classList.remove('active');
@@ -1584,7 +1563,7 @@
     if (navEl) navEl.classList.add('active');
     window.scrollTo({ top: 0, behavior: 'instant' });
   }
-
+ 
   function toggleTheme() {
     const html = document.documentElement;
     const dark = html.getAttribute('data-theme') === 'dark';
@@ -1592,6 +1571,6 @@
     document.getElementById('themeBtn').textContent = dark ? 'Dark' : 'Light';
   }
 </script>
-
+ 
 </body>
 </html>
